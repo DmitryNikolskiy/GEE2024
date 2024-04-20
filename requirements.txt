@@ -1,0 +1,18 @@
+# Documentation static site generator & deployment tool
+mkdocs>=1.1.2
+
+# Material theme
+mkdocs-material>=8.1.7
+
+# Wikilinks support
+mkdocs-roamlinks-plugin>=0.1.3
+
+mkdocs-autolinks-plugin
+mkdocs-glightbox
+mkdocs-mermaid2-plugin
+
+mkdocs-exclude
+neoteroi-mkdocs
+
+Markdown
+python-markdown-math

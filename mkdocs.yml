@@ -1,0 +1,84 @@
+# official tutorial 
+# mkdocs-material: https://squidfunk.github.io/mkdocs-material/
+# mkdocs: https://www.mkdocs.org/user-guide/configuration/
+site_name: End-to-end Google Earth Engine Guide на русском
+site_url: http://flexlug.ru/
+site_dir: public
+docs_dir: ./docs
+
+theme:
+  features:
+    - content.tabs.link
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/brightness-7
+        name: Переключиться на светлую тему
+    - scheme:
+      toggle:
+        icon: material/brightness-3
+        name: Переключиться на тёмную тему
+
+  name: material
+  #  favicon: attachment/portrait.png
+  language: ru
+  features:
+    - navigation.expand 
+    - tabs 
+markdown_extensions: 
+  - attr_list # https://squidfunk.github.io/mkdocs-material/reference/images/
+  - pymdownx.tabbed:
+      alternate_style: true 
+  - nl2br # newline-to-break 
+  - mdx_math # latex support
+  - toc:
+      permalink: '#' # heading anchor 
+      slugify: !!python/name:pymdownx.slugs.uslugify # 解决中文标题解析问题
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - footnotes
+  - md_in_html
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  # - pymdownx.emoji:
+      # emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist
+  - pymdownx.tilde
+  - neoteroi.projects
+  - pymdownx.keys
+plugins:
+  - search
+  - roamlinks
+  - autolinks
+
+  - exclude:
+      glob:
+        - "*.tmp"
+        - "*.pdf"
+        - "*.gz"
+      regex:
+        - '.*\.(tmp|bin|tar)$'
+
+extra_javascript:
+  - https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+extra_css:
+  - css/neoteroi-mkdocs.css
+  - css/neoteroi-gantt.css
