@@ -1,0 +1,46 @@
+name: Site deploy
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code to workspace
+      uses: actions/checkout@v2
+
+
+    - name: Build
+      uses: Tiryoh/actions-mkdocs@v0
+      with:
+        mkdocs_version: 'latest' # option
+        requirements: 'requirements.txt' # option
+        configfile: 'mkdocs.yml' # option
+
+    - name: Copy built site to server
+      uses: moonpathbg/scp_uploader@latest
+      with:
+          host: ${{ secrets.HOST }}
+          port: ${{ secrets.PORT }}
+          username: ${{ secrets.USERNAME }}
+          key : ${{ secrets.SSH_KEY }}
+          source: "/***/workspace/public/*"
+          target: "~/temp/gee"
+
+
+    - name: Run Commands via SSH
+      # You may pin to the exact commit or the version.
+      # uses: Flaavius/ssh-commands@79ae027ae651731b483988ee69b2f628c75422f1
+      uses: Flaavius/ssh-commands@1.0
+      with:
+        # Command to run on the remote server
+        command: ~/deploy-gee.sh
+        # Hostname or IP address of the server.
+        host: ${{ secrets.HOST }}
+        # Username for authentication.
+        username: ${{ secrets.USERNAME }}
+        # Port number of the server.
+        port: ${{ secrets.PORT }}
+        # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
+        privateKey: ${{ secrets.SSH_KEY }}
