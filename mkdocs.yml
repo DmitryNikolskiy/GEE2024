@@ -5,6 +5,7 @@ site_name: End-to-end Google Earth Engine Guide на русском
 site_url: http://flexlug.ru/
 site_dir: public
 docs_dir: ./docs
+repo_url: https://github.com/Flexlug/End-To-End-GEE-RUS
 
 theme:
   features:
